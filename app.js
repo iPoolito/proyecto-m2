@@ -18,7 +18,7 @@ app.set('view engine', 'hbs')
 //Activacion de recepcion de datos en formularios
 app.use(express.urlencoded({ extended: true }))
 //Activacion de gestion de sesiones
-require('./config/session.config')(app)
+//require('./config/session.config')(app) // Descomentar esto me da un error en el heroku
 //Activacion de base de datos
 connectingDB()
 //Establecer el valor de req.session para poder ser utilizado por hbs
@@ -28,11 +28,20 @@ app.use((req, res, next) => {
   next()
 })
 */
-//Pagina de Home
-app.get('/', (req, res) => {
-  res.render('index')
-})
 
+//RUTEO
+
+const index = require('./routes/index')
+const auth = require('./routes/auth')
+
+//ruta del home
+//http://localhost:3000/
+app.use('/', index)
+app.use('/signin', auth)
+app.use('/login', auth)
+
+//Manejo de errores
+require('./error-handling')(app)
 //Servidor
 app.listen(process.env.PORT, () => {
   console.log(`Servidor activado: ${process.env.PORT}`)
