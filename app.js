@@ -25,6 +25,7 @@ require('./config/session.config')(app)
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
+  next()
 })
 //Pagina de Home
 app.get('/', (req, res) => {
