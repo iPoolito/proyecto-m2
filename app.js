@@ -26,7 +26,13 @@ require('./config/session.config')(app)
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
 })
-
+//Pagina de Home
 app.get('/', (req, res) => {
   res.render('index')
+})
+
+//Servidor
+app.listen(process.env.PORT, () => {
+  console.log(`Servidor activado: ${process.env.PORT}`)
+  return
 })
