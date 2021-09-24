@@ -22,11 +22,12 @@ app.use(express.urlencoded({ extended: true }))
 require('./config/session.config')(app)
 
 //Establecer el valor de req.session para poder ser utilizado por hbs
-
+/*
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
   next()
 })
+*/
 //Pagina de Home
 app.get('/', (req, res) => {
   res.render('index')
