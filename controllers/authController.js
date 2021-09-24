@@ -4,12 +4,12 @@ const saltRounds = 10
 const User = require('./../models/User')
 
 //Carga el hbs con el form para crear una cuenta
-exports.signIn = async (req, res) => {
+exports.signup = async (req, res) => {
   res.render('auth/user-create')
 }
 
 //Recibe los datos del formulario
-exports.signInForm = async (req, res) => {
+exports.signupForm = async (req, res) => {
   //Destructuracion de objetos de los datos obtenidos del req.body
   const { username, email, password } = req.body
   //Se crea la base de la contrasena encriptada

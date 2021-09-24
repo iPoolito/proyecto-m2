@@ -34,12 +34,11 @@ const index = require('./routes/index')
 const auth = require('./routes/auth')
 const authlog = require('./routes/authlog')
 const userp = require('./routes/user')
-
 //ruta del home
 //http://localhost:3000/
 app.use('/', index)
-//http://localhost:3000/signin
-app.use('/signin', auth)
+//http://localhost:3000/signup
+app.use('/signup', auth)
 //http://localhost:3000/login
 app.use('/login', authlog)
 //http://localhost:3000/user
