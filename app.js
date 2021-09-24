@@ -10,8 +10,7 @@ const connectingDB = require('./config/db')
 
 //Activacion de variables de entorno(DOTENV)
 require('dotenv').config()
-//Activacion de base de datos
-connectingDB()
+
 //Activacion de carpeta public
 app.use(express.static(__dirname + '/public'))
 //Activacion de la carpeta de vistas
@@ -20,7 +19,8 @@ app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 //Activacion de gestion de sesiones
 require('./config/session.config')(app)
-
+//Activacion de base de datos
+connectingDB()
 //Establecer el valor de req.session para poder ser utilizado por hbs
 /*
 app.use((req, res, next) => {
