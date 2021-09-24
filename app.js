@@ -18,7 +18,7 @@ app.set('view engine', 'hbs')
 //Activacion de recepcion de datos en formularios
 app.use(express.urlencoded({ extended: true }))
 //Activacion de gestion de sesiones
-require('./config/session.config')(app)
+//require('./config/session.config')(app)
 //Activacion de base de datos
 connectingDB()
 //Establecer el valor de req.session para poder ser utilizado por hbs
