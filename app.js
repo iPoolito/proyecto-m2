@@ -4,14 +4,15 @@ const express = require('express')
 const app = express()
 const hbs = require('hbs')
 
-const connectingDB = require('./config/db')
+//const connectingDB = require('./config/db')
 
 //Middlewares
 
 //Activacion de variables de entorno(DOTENV)
 require('dotenv').config()
+require('./db/index')
 //Activacion de base de datos
-connectingDB()
+//connectingDB()
 //Activacion de carpeta public
 app.use(express.static(__dirname + '/public'))
 //Activacion de la carpeta de vistas
@@ -20,7 +21,7 @@ app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 //Activacion de gestion de sesiones
 require('./config/session-config')(app) // Descomentar esto me da un error en el heroku ERROR HEROKU
-
+//MONGODB AQUI ANTES
 //Establecer el valor de req.session para poder ser utilizado por hbs
 /**/
 app.use((req, res, next) => {
@@ -34,7 +35,7 @@ const index = require('./routes/index')
 const auth = require('./routes/auth')
 const authlog = require('./routes/authlog')
 const userp = require('./routes/user')
-//ruta del home
+
 //http://localhost:3000/
 app.use('/', index)
 //http://localhost:3000/signup
