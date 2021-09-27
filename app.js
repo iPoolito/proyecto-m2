@@ -20,7 +20,9 @@ app.set('view engine', 'hbs')
 //Activacion de recepcion de datos en formularios
 app.use(express.urlencoded({ extended: true }))
 //Activacion de gestion de sesiones
-require('./config/session-config')(app) // Descomentar esto me da un error en el heroku ERROR HEROKU
+//require('./config/session-config')(app) // Descomentar esto me da un error en el heroku ERROR HEROKU
+const generateSession = require('./config/session-config')
+generateSession(app)
 //MONGODB AQUI ANTES
 //Establecer el valor de req.session para poder ser utilizado por hbs
 /**/
