@@ -24,6 +24,7 @@ const auth = require('./routes/auth')
 const authlog = require('./routes/authlog')
 const userp = require('./routes/user')
 const tournaments = require('./routes/tournaments')
+const team = require('./routes/team')
 
 //http://localhost:3000/
 app.use('/', index)
@@ -35,6 +36,8 @@ app.use('/login', authlog)
 app.use('/user', userp)
 //http://localhost:3000/torunaments
 app.use('/tournaments', tournaments)
+//http://localhost:3000/team
+app.use('/team', team)
 
 //Manejo de errores
 require('./error-handling')(app)

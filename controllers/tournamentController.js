@@ -22,3 +22,11 @@ exports.createForm = async (req, res) => {
   console.log(newTournament)
   res.redirect('/tournaments')
 }
+
+exports.details = async (req, res) => {
+  const { id } = req.params
+
+  const tournamentDetails = await Tournament.findById(id)
+  console.log(tournamentDetails)
+  return res.render('tournaments/details', tournamentDetails)
+}

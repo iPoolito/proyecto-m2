@@ -1,12 +1,21 @@
-<h1>Tu perfil</h1>
+<div>
+  <h1>Profile</h1>
 
-{{#if foundUser}}
+  {{#if foundUser}}
 
-  Hola
-  {{foundUser.username}}
-  Tu roll es
-  {{foundUser.role}}
+    <p>
+      Hi
+      {{foundUser.username}}, your account its
+      {{foundUser.role}}
+    </p>
 
-{{else}}
-  <p>Aún no has iniciado sesión</p>
-{{/if}}
+    <h2>Your Team</h2>
+    {{#each foundUser.team}}
+      <h3>{{this.name}}</h3>
+      <p>{{this.description}} </p>
+    {{/each}}
+
+  {{else}}
+    <p>Aún no has iniciado sesión</p>
+  {{/if}}
+</div>
