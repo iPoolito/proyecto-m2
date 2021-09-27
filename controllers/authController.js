@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
 //Recibe los datos del formulario
 exports.signupForm = async (req, res) => {
   //Destructuracion de objetos de los datos obtenidos del req.body
-  const { username, email, password } = req.body
+  const { username, email, password, role } = req.body
   //Se crea la base de la contrasena encriptada
   const salt = await bcryptjs.genSalt(saltRounds)
   //Con la base hecha, mezcla la contrasena con los caracteres randoms
@@ -20,7 +20,8 @@ exports.signupForm = async (req, res) => {
   const newUser = await User.create({
     username,
     email,
-    passwordHash: hashedPassword
+    passwordHash: hashedPassword,
+    role
   })
 
   console.log(newUser)
@@ -63,6 +64,10 @@ exports.logInForm = async (req, res) => {
       return res.render('/login', {
         errorMessage: 'Wrong email or password. Try again'
       })
+    }
+    //Comparacion
+    if (foundUser.role == 'admin') {
+      req.session.admin = foundUser
     }
     //SI coincide Crear una Sesion y retornar al pagina de exito
     req.session.currentUser = foundUser

@@ -4,34 +4,26 @@ const express = require('express')
 const app = express()
 const hbs = require('hbs')
 
-//const connectingDB = require('./config/db')
-
 //Middlewares
-
-//Activacion de variables de entorno(DOTENV)
-
 require('./db/index')
-//Activacion de base de datos
-//connectingDB()
 require('./config')(app)
-//Activacion de gestion de sesiones
-//require('./config/session-config')(app) // Descomentar esto me da un error en el heroku ERROR HEROKU
+
 const generateSession = require('./config/session-config')
-generateSession(app)
-//MONGODB AQUI ANTES
-//Establecer el valor de req.session para poder ser utilizado por hbs
-/**/
+generateSession(app) // Descomentar esto me da un error en el heroku ERROR HEROKU
+//RUTEO
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
+  res.locals.admin = req.session.admin
+  //console.log(res.locals.admin)
   next()
 })
-
-//RUTEO
 
 const index = require('./routes/index')
 const auth = require('./routes/auth')
 const authlog = require('./routes/authlog')
 const userp = require('./routes/user')
+const tournaments = require('./routes/tournaments')
 
 //http://localhost:3000/
 app.use('/', index)
@@ -41,6 +33,8 @@ app.use('/signup', auth)
 app.use('/login', authlog)
 //http://localhost:3000/user
 app.use('/user', userp)
+//http://localhost:3000/torunaments
+app.use('/tournaments', tournaments)
 
 //Manejo de errores
 require('./error-handling')(app)

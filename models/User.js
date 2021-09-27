@@ -26,7 +26,11 @@ const userSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Team'
     }
-  ] // one to many - BASE DE DATOS
+  ], // one to many - BASE DE DATOS
+  role: {
+    type: String,
+    require: [true, 'Roll is required']
+  }
 })
 
 // 3. MODELO
