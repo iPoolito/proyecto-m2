@@ -1,5 +1,5 @@
 //Importaciones
-
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const hbs = require('hbs')
@@ -9,16 +9,11 @@ const hbs = require('hbs')
 //Middlewares
 
 //Activacion de variables de entorno(DOTENV)
-require('dotenv').config()
+
 require('./db/index')
 //Activacion de base de datos
 //connectingDB()
-//Activacion de carpeta public
-app.use(express.static(__dirname + '/public'))
-//Activacion de la carpeta de vistas
-app.set('view engine', 'hbs')
-//Activacion de recepcion de datos en formularios
-app.use(express.urlencoded({ extended: true }))
+require('./config')(app)
 //Activacion de gestion de sesiones
 //require('./config/session-config')(app) // Descomentar esto me da un error en el heroku ERROR HEROKU
 const generateSession = require('./config/session-config')
